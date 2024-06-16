@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <p>일어나라</p>
-  </div>
+  <RouterView></RouterView>
 </template>
 
 <script setup lang="ts"></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+#app {
+  height: 100vh;
+}
+</style>
