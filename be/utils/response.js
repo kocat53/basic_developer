@@ -33,7 +33,7 @@ export const errorResponse = (
   return res.status(code).json({
     message,
     data,
-    errorCode,
+    errCode,
     error: error ? error.message : undefined,
   });
 };
