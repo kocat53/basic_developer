@@ -9,8 +9,8 @@ import { computed, defineProps, withDefaults } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    theme: 'primary' | 'secondary' | 'success' | 'danger' | 'warning'
-    size: 'lg' | 'sm' | ''
+    theme?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning'
+    size?: 'lg' | 'sm' | ''
   }>(),
   {
     theme: 'secondary',
