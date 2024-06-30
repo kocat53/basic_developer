@@ -20,9 +20,7 @@
           v-model.trim="user.password"
           autoComplete="off"
         />
-        <Checkbox inline v-model="user.saveId"
-          >다음에 또오세요</Checkbox
-        >
+        <Checkbox inline v-model="user.saveId">다음에 또오세요</Checkbox>
         <div class="mt-3 d-grid">
           <Button type="submit" theme="primary">입장하기</Button>
           <div class="text-center mt-4">
@@ -40,6 +38,7 @@ import Button from "@/components/common/Button.vue";
 import TextField from "@/components/common/TextField.vue";
 import Checkbox from "@/components/common/Checkbox.vue";
 import { RouterLink } from "vue-router";
+import axios from "@/api/axios";
 
 const user = ref({
   id: "",
@@ -48,7 +47,11 @@ const user = ref({
 });
 
 const handleLogin = async () => {
-  console.log("로그인하자");
+  const result = await axios.post("/user/login", {
+    id: user.value.id,
+    password: user.value.password,
+  });
+  console.log("나오나?", result);
 };
 </script>
 

@@ -6,7 +6,7 @@
       <h1 class="text-center text-fw-bold text-uppercase mb-4 d-block">
         Jasper 2024
       </h1>
-      <form @submit.prevent="handleLogin" class="d-grid gap-2">
+      <form @submit.prevent="handleSignUp" class="d-grid gap-2">
         <div class="container-fluid p-0">
           <div class="row gx-3">
             <div class="col">
@@ -53,10 +53,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { postFetch } from "@/api/useFetch.ts";
 import Button from "@/components/common/Button.vue";
 import TextField from "@/components/common/TextField.vue";
+import axios from "@/api/axios";
+const router = useRouter();
 
 const user = ref({
   id: "",
@@ -66,9 +66,9 @@ const user = ref({
   nickName: "",
 });
 
-const handleLogin = async () => {
-  const result = await postFetch("/user/signup", user.value);
-  console.log("될까..!?", result);
+const handleSignUp = async () => {
+  const { status, data } = await axios.post("/user/signup", user.value);
+  if (status === 200) router.push("/login");
 };
 </script>
 
