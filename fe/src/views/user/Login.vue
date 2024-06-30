@@ -21,7 +21,7 @@
           autoComplete="off"
         />
         <Checkbox inline v-model="user.saveId"
-          >너 누군지 똑똑히 기억한다</Checkbox
+          >다음에 또오세요</Checkbox
         >
         <div class="mt-3 d-grid">
           <Button type="submit" theme="primary">입장하기</Button>
