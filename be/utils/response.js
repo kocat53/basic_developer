@@ -26,8 +26,8 @@ export const errorResponse = (
   res,
   code,
   message,
-  data = [],
   errCode,
+  data = [],
   error = null
 ) => {
   return res.status(code).json({
