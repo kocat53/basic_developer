@@ -1,3 +1,5 @@
+<img width="501" alt="image" src="https://github.com/kocat53/basic_developer/assets/20110150/cdf45602-01ac-460f-938f-d6be31238ca5">
+
 # 풀스택 도전기 1차 
 ### 개요
 - 백엔드 환경을 이해하기 위해 [유데미 Node.JS 강좌]([url](https://www.udemy.com/course/nodejs-mvc-rest-apis-graphql-deno/))를 학습진행
@@ -26,4 +28,5 @@
 
 ### ✅ 체크포인트
 - Nuxt3를 쓰지 않은 이유 : 아직 필요성을 모르겠어서 `Vue3` 작업 후 `Nuxt3`로 작업하여 차이를 느낄예정
+- React학습을 하고 사용하지 않은 이유 : 현재 진행중인 프로젝트가 `Vue3` 기반이라 우선 Vue를 심화까지 알고싶었기 때문
 
