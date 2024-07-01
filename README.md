@@ -10,6 +10,7 @@
 - vue3
 - pinia
 - bootStrap5
+- TypeScript
 
 ## 🛜 Back-End
 - node.js
@@ -17,7 +18,10 @@
 - mongoose
 - express
 
-### 목표
+### 🥅 목표
 1. 로그인기능
 2. 회원가입기능
 3. 게시판 조회/등록/수정/삭제
+
+### ✅ 체크포인트
+- Nuxt3를 쓰지 않은 이유 : 아직 필요성을 모르겠어서 `Vue3` 작업 후 `Nuxt3`로 작업하여 차이를 느낄예정
