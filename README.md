@@ -1,4 +1,5 @@
-![image](https://github.com/kocat53/basic_developer/assets/20110150/3b275081-2dcb-44d1-8a1f-6d91f897c75c)
+![image](https://github.com/kocat53/basic_developer/assets/20110150/c1abb43f-7bb9-4c42-b62f-b790533ca901)
+
 
 
 # 풀스택 도전기 1차 
