@@ -4,7 +4,7 @@ export const signUpValidation = [
   body("id")
     .isLength({ min: 5 })
     .withMessage("아이디는 최소 5자라 이상이어야 합니다.")
-    .matches(/^[A-Za-z0-9]+$/)
+    .matches(/^[A-Za-z0-9.]+$/)
     .withMessage("아이디는 영어 알파벳과 숫자만 포함해야 합니다."),
   body("password")
     .isLength({ min: 6 })

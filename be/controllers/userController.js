@@ -1,14 +1,13 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { validationResult } from "express-validator";
-
 import User from "../models/User.js";
 import { successResponse, errorResponse } from "../utils/response.js";
+import { validationResult } from "express-validator";
 
 // 토큰생성용 키 설정
-const SECRET_KEY = process.env.SECRET_KEY;
-const REFRESH_SECRET_KEY = process.env.REFRESH_SECRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY; // 토큰용 키!
+const REFRESH_SECRET_KEY = process.env.REFRESH_SECRET_KEY; // 리프레시 토큰용 키!
 const LOCK_TIME = 30 * 60 * 1000; // 30분
 
 // 아이디, 닉네임, 전번 사용중인지 체크
@@ -16,10 +15,19 @@ const matchedInfo = async (req, res) => {
   const { id, phone, nickName } = req.body;
   let errorMessage = "";
 
-  // ID 중복 체크
+  const errors = validationResult(req);
+  const checkValidate = errors.errors.filter(
+    e => e.path === Object.keys(req.body)[0]
+  );
+
+  if (!errors.isEmpty() && checkValidate[0]) {
+    return res.status(400).json({ message: checkValidate[0].msg });
+  }
+
   if (id) {
+    // ID 중복 체크
     const idExists = await User.findOne({ id });
-    if (idExists) {
+    if (idExists && idExists.id === id) {
       errorMessage = "이미 존재하는 아이디입니다.";
     }
   }
@@ -27,7 +35,7 @@ const matchedInfo = async (req, res) => {
   // 전화번호 중복 체크
   if (phone) {
     const phoneExists = await User.findOne({ phone });
-    if (phoneExists) {
+    if (phoneExists || phone === "") {
       errorMessage = "이미 존재하는 전화번호입니다.";
     }
   }
@@ -35,7 +43,7 @@ const matchedInfo = async (req, res) => {
   // 닉네임 중복 체크
   if (nickName) {
     const nickNameExists = await User.findOne({ nickName });
-    if (nickNameExists) {
+    if (nickNameExists || nickName === "") {
       errorMessage = "이미 존재하는 닉네임입니다.";
     }
   }
@@ -92,7 +100,7 @@ const signUp = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { id, password } = req.body;
-    const user = await User.findOne({ id });
+    const user = await User.findOne({ id }); // 아이디 있나 체크
 
     // 등록된아이디가 없을경우
     if (!user) {
@@ -107,6 +115,7 @@ const login = async (req, res) => {
     // 아이디가 있고, 비밀번호가 맞는지 체크
     const userMatch = await bcrypt.compare(password, user.password);
     // 비밀번호가 틀릴경우 :10회 카운트 시작
+
     if (!userMatch) {
       // user.loginAttempts += 1;
 
