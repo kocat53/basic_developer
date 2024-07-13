@@ -7,11 +7,11 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    theme?: "primary" | "secondary" | "success" | "danger" | "warning";
+    theme?: "primary" | "secondary" | "success" | "danger" | "warning" | "";
     size?: "lg" | "sm" | "";
   }>(),
   {
-    theme: "secondary",
+    theme: "",
     size: "",
   }
 );

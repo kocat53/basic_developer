@@ -9,32 +9,35 @@
 </template>
 
 <script setup lang="ts">
-import { computed, withDefaults, watch } from 'vue'
-import type { Size } from '@/types/components'
+import { computed, withDefaults, watch } from "vue";
+import type { Size } from "@/types/components";
 
-const modelValue = defineModel('modelValue', { default: '' })
-const emits = defineEmits(['update:modelValue'])
+const modelValue = defineModel("modelValue", { default: "" });
+const emits = defineEmits(["update:modelValue"]);
 const props = withDefaults(
   defineProps<{
-    multiLine?: number
-    size?: Size
+    multiLine?: number;
+    size?: Size;
+    error?: string | boolean;
   }>(),
   {
     multiLine: 0,
-    size: ''
+    size: "",
+    error: "",
   }
-)
+);
 
 const classes = computed(() => {
   return {
-    'form-control': true,
-    [`form-control-${props.size}`]: props.size
-  }
-})
+    "form-control": true,
+    "border-danger": props.error,
+    [`form-control-${props.size}`]: props.size,
+  };
+});
 
-watch(modelValue, (newValue) => {
-  if (newValue === ' ') modelValue.value = ''
-})
+watch(modelValue, newValue => {
+  if (newValue === " ") modelValue.value = "";
+});
 
 // ⭐️ 기존에 아래처럼 사용하던 방식을 defineModel 로 하면 더 심플하게 가능함
 // const onInput = (event: Event) => {
