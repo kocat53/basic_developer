@@ -1,4 +1,4 @@
-import axios, { type AxiosInstance } from "axios";
+import axios, { type AxiosInstance, isAxiosError } from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 // axios 인스턴스 설정
@@ -28,7 +28,10 @@ instance.interceptors.response.use(
   },
   error => {
     // 오류 응답을 처리하는 로직 (예: 오류 메시지 표시)
-    return Promise.reject(error);
+    if (isAxiosError(error)) {
+      return Promise.reject(error);
+    }
+    return Promise.reject(error); // AxiosError가 아닌 경우도 처리해야 합니다.
   }
 );
 
